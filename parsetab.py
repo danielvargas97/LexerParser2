@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'DIVI MINUS NUMBER PLUS TIMESexpression : expression term PLUSexpression : termterm : term factor TIMESexpression : expression factor MINUSterm : term factor DIVIterm : factorfactor : NUMBER'
+_lr_signature = 'DIVI MINUS NUMBER PLUS TIMESexpression : expression expression PLUSexpression : termexpression : expression expression TIMESexpression : expression expression MINUSexpression : expression expression DIVIterm : factorfactor : NUMBER'
     
-_lr_action_items = {'DIVI':([2,5,],[-7,9,]),'NUMBER':([0,1,2,3,4,6,7,8,9,10,11,],[2,2,-7,-6,2,2,-6,-3,-5,-1,-4,]),'TIMES':([2,5,],[-7,8,]),'PLUS':([2,6,7,8,9,],[-7,10,-6,-3,-5,]),'MINUS':([2,7,],[-7,11,]),'$end':([1,2,3,4,8,9,10,11,],[-2,-7,-6,0,-3,-5,-1,-4,]),}
+_lr_action_items = {'DIVI':([1,2,3,5,6,7,8,9,],[-2,-7,-6,6,-5,-3,-1,-4,]),'NUMBER':([0,1,2,3,4,5,6,7,8,9,],[2,-2,-7,-6,2,2,-5,-3,-1,-4,]),'TIMES':([1,2,3,5,6,7,8,9,],[-2,-7,-6,7,-5,-3,-1,-4,]),'PLUS':([1,2,3,5,6,7,8,9,],[-2,-7,-6,8,-5,-3,-1,-4,]),'MINUS':([1,2,3,5,6,7,8,9,],[-2,-7,-6,9,-5,-3,-1,-4,]),'$end':([1,2,3,4,6,7,8,9,],[-2,-7,-6,0,-5,-3,-1,-4,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'term':([0,4,],[1,6,]),'expression':([0,],[4,]),'factor':([0,1,4,6,],[3,5,7,5,]),}
+_lr_goto_items = {'term':([0,4,5,],[1,1,1,]),'expression':([0,4,5,],[4,5,5,]),'factor':([0,4,5,],[3,3,3,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,11 +27,11 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> expression","S'",1,None,None,None),
-  ('expression -> expression term PLUS','expression',3,'p_expression_plus','parser_rules.py',5),
+  ('expression -> expression expression PLUS','expression',3,'p_expression_plus','parser_rules.py',5),
   ('expression -> term','expression',1,'p_expression_term','parser_rules.py',9),
-  ('term -> term factor TIMES','term',3,'p_term_times','parser_rules.py',13),
-  ('expression -> expression factor MINUS','expression',3,'p_term_minus','parser_rules.py',17),
-  ('term -> term factor DIVI','term',3,'p_term_divi','parser_rules.py',21),
+  ('expression -> expression expression TIMES','expression',3,'p_term_times','parser_rules.py',13),
+  ('expression -> expression expression MINUS','expression',3,'p_term_minus','parser_rules.py',17),
+  ('expression -> expression expression DIVI','expression',3,'p_term_divi','parser_rules.py',21),
   ('term -> factor','term',1,'p_term_factor','parser_rules.py',25),
   ('factor -> NUMBER','factor',1,'p_factor_num','parser_rules.py',29),
 ]

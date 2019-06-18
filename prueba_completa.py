@@ -4,7 +4,7 @@ import parser_rules
 from ply.lex import lex
 from ply.yacc import yacc
 
-text = "10 5 * 12 /"
+text = "15 5 / 12 + 27 12 1 + - *"
 lexer = lex(module=lexer_rules)
 parser = yacc(module=parser_rules)
 
